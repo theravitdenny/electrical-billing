@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrical Bill Book</title>
+    <style>
+        <style>
+        body {position:relative;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        .container {border: 2px solid blue;text-align:center;
+            width: 80%;
+            margin: auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .bill-entry {border: 2px solid blue;text-align:center; height:400px;
+            margin-bottom: 20px;margin-top: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        #name {
+		 position:absolute;left:15%;top:150px;
+            font-weight: bold;font-size:25px;
+        }
+		#CustomerName {
+		 position:absolute;left:100%;top:0px;
+            font-weight: bold;
+        }
+		#Number{position:absolute;left:15%;top:190px;
+		font-weight: bold;font-size:25px;}
+		
+		
+		#ConnectionNumber {position:absolute;left:100%;top:0px;
+		font-weight: bold;}
+		
+		
+		.date{position:absolute;left:68%;top:150px;
+		font-weight: bold;font-size:25px;}
+		
+		
+		#printDate{position:absolute;left:99%;top:1px;
+		font-weight: bold;}
+		
+		
+		.time{position:absolute;left:65%;top:480px;
+		font-weight: bold;font-size:25px;}
+		
+		#printTime{position:absolute;left:97%;top:1px;
+		font-weight: bold;}
+		
+		#Reading{position:absolute;left:40%;top:260px;
+		font-weight: bold;font-size:20px;}
+		
+		#reading{position:absolute;left:100%;top:0px;
+		font-weight: bold;}
+		
+		#unit{position:absolute;left:33%;top:340px;
+		font-weight: bold;font-size:20px;}
+		
+		
+		#UnitsConsumed{position:absolute;left:100%;top:23px;
+		font-weight: bold;}
+		
+		#Amount{position:absolute;left:40%;top:420px;
+		font-weight: bold;font-size:20px;}
+		
+	
+		#amount{position:absolute;left:100%;top:0px;
+		font-weight: bold;}
+		#mNumber{ position:absolute;left:15%;top:230px;
+		font-weight: bold;font-size:25px;}
+		
+		.head{border: 2px solid blue;text-align:center; }
+    </style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="head"><h1>Electrical Bill Book</h1></div>
+        <div class="bill-entry">
+            <div class="date">Date: <span id="printDate"></span></div>
+            <div class="time">Time: <span id="printTime"></span></div>
+            <div id="name">Customer Name: <span id="customerName"></span></div>
+            <div id="Number">Connection Number: <span id="connectionNumber"></span></div>
+            <div id="mNumber">Mobile Number: <span id="mobileNumber"></span></div>
+			<div id="Reading"> Reading&nbsp;&nbsp;&nbsp;&nbsp;: <span id="reading" > 
+			</span></div>
+			
+            <div id="unit">UnitsConsumed&nbsp;&nbsp;&nbsp;:<span id="UnitsConsumed">
+            </span></div>
+            <div id="Amount">Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span id="amount">
+            </span></div>
+            <!-- Add more bill details as needed -->
+        </div>
+    </div>
+    <script>
+        // Get current date and time
+        var currentDateTime = new Date();
+        var currentDate = currentDateTime.toLocaleDateString();
+        var currentTime = currentDateTime.toLocaleTimeString();
+
+        // Display date and time
+        document.getElementById('printDate').innerText = currentDate;
+        document.getElementById('printTime').innerText = currentTime;
+
+        // Retrieve data from sessionStorage
+        var customerName = sessionStorage.getItem('customerName');
+        var connectionNumber = sessionStorage.getItem('connectionNumber');
+        var mobileNumber = sessionStorage.getItem('mobileNumber');
+
+        // Display retrieved data
+        document.getElementById('customerName').innerText = customerName;
+        document.getElementById('connectionNumber').innerText = connectionNumber;
+        document.getElementById('mobileNumber').innerText = mobileNumber;
+        // You can add more fields and display them similarly
+		var last_reading=sessionStorage.getItem('last_read');
+		var curr_reading=sessionStorage.getItem('curr_read');
+		var consumed_units= parseInt(curr_reading)- parseInt(last_reading);
+		
+		document.getElementById('reading').innerText=last_reading;
+		console.log(last_reading);
+		document.getElementById('UnitsConsumed').innerText=consumed_units;
+		document.getElementById('amount').innerText=consumed_units*8.50;
+    </script>
+</body>
+</html>

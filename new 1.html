@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    
+body{position:relative; 
+}
+
+#h{background-image:url(https://w0.peakpx.com/wallpaper/383/653/HD-wallpaper-electricity-voltage-copper-wire-arc.jpg);
+  background-position: center; height:290px;color:white;font-size: 25px;
+  ;}
+  
+  h1{ text-align:center;}
+  h2{text-align:center;}
+  #b{border:2px solid;text-align:center;margin:5px;
+  }
+  #c{ border:3px solid ;border-radius:5%; background-color:white;
+ position:absolute;left:25%;top:370px;width:52%;height:auto;display:flexbox;
+  }
+  #connectionName{ font-size: 25px;margin:10px 60px; padding:8px 40px;}
+  #connectionNumber{font-size: 25px;margin:10px 8px; padding:8px 40px;
+  }
+   #MobileNumber{font-size: 25px;margin:10px 15px; padding:8px 40px;
+  }
+   #three{font-size: 25px;margin:10px ; 
+  }
+   #temporary{font-size: 25px;margin:10px;
+  }
+  #home{font-size: 25px;margin:10px;
+  }
+  #commen{font-size: 25px;margin:10px;
+  }
+  #commercial{font-size: 25px;margin:10px;
+  }
+ 
+
+  
+  button{float: right;   color:white;background-color:#00e500;}
+  
+  @media screen and (max-width: 900px) {
+            #connectionNumber {
+              margin:4px 20px; 
+              padding:2px 10px;
+                 width: 70%;
+                 }
+                 #connectionName{ margin:4px 20px; 
+              padding:4px 10px;
+                 width: 70%;} 
+                 #MobileNumber{ margin:4px 20px; 
+              padding:2px 10px;
+                 width: 70%;}
+
+        }
+
+        @media screen and (max-width: 600px) {
+            #connectionNumber {
+              margin:4px 20px; 
+              padding:2px 10px;
+                 width: 90%;
+                 }
+                 #connectionName{ margin:4px 20px; 
+              padding:2px 10px;
+                 width: 100%;} 
+                 #MobileNumber{ margin:4px 20px; 
+              padding:2px 10px;
+                 width: 100%;}
+
+        }
+
+       
+        
+
+
+                @media screen and (max-width: 480px) {
+              #connectionNumber {
+              margin:4px 20px; 
+              padding:2px 10px;
+                 width: 70%;
+                 }
+                 #connectionName{ margin:4px 20px; 
+              padding:2px 10px;
+                 width: 70%;} 
+                 #MobileNumber{ margin:4px 20px; 
+              padding:2px 10px;
+                 width: 70%;}
+
+} @media screen and (max-width: 300px) {
+            #h {
+                background-position: center;
+                width: 100%;
+                height: auto;
+                color: white;
+                font-size: 25px;
+            }
+
+            #connectionNumber {
+             margin:4px 20px; 
+             padding:2px 10px;
+            width: 50%;
+            }
+            #connectionName{ margin:4px 20px; 
+              padding:2px 10px;
+                 width: 50%;}
+            }
+            #MobileNumber{ margin:4px 20px; 
+              padding:2px 10px;
+                 width: 50%;}
+</style>
+</head>
+<body>  
+<div>
+    <div id="h">
+        <h1>Electrical Billbook</h1>
+        <h2>Enter Service Connection Number and Registered Mobile number to view Bill Status</h2>   
+    </div>
+
+    <div id="b"><h2>CONNECTION DETAILS</h2></div><br>
+    <div id="c"> 
+        <form onsubmit="return nextPage()">
+            <label for="connectionName"><b>Enter account holder name</b></label>
+            <input type="text" id="connectionName"><br> 
+            <label for="connectionNumber"><b>Enter Service Connection Number</b></label>
+            <input type="number" id="connectionNumber"><br>
+            <label for="MobileNumber"><b>Enter Registered Mobile Number</b></label>
+            <input type="number" id="MobileNumber"><br>
+            <label for="correctoption"><b>Select the correct option</b></label>   
+            <input type="radio" id="single" name="sc"> single phase Service
+            <input type="radio" id="three" name="sc"> three phase Service<br>
+            <label for="correctcheckbox"><b>Select the correct checkbox</b></label>  
+            <input type="checkbox" id="temporary"> temporary Service
+            <input type="checkbox" id="home"> home Service
+            <input type="checkbox" id="common"> common Service
+            <input type="checkbox" id="commercial"> commercial Service<br>
+            <button type="submit">Submit</button>
+        </form>
+        <h3>If you want to update your Mobile Number <a href="#">Click here</a></h3>
+    </div>
+</div>
+<script>
+    function nextPage() {
+        // Get form inputs
+        var customerName = document.getElementById('connectionName').value;
+        var connectionNumber = document.getElementById('connectionNumber').value;
+        var mobileNumber = document.getElementById('MobileNumber').value;
+
+        // Store data in sessionStorage
+        sessionStorage.setItem('customerName', customerName);
+        sessionStorage.setItem('connectionNumber', connectionNumber);
+        sessionStorage.setItem('mobileNumber', mobileNumber);
+		
+		
+		
+
+        // Redirect to the bill page
+        window.location.href = 'page3.html';
+
+        // Prevent default form submission
+        return false;
+		
+		// culculate the reading
+		function calculateUnit() {
+        var unitPrice = 10; // Default unit price
+        var unit = 1;
+
+        // Check if single phase is selected
+        if (document.getElementById('single').checked) {
+            unitPrice = 10; // Default price for single phase
+        } else if (document.getElementById('three').checked) {
+            unitPrice = 15; // Default price for three phase
+        }
+
+        // Check additional services and adjust unit price accordingly
+        if (document.getElementById('temporary').checked) {
+            unitPrice *= 3.5; // Adjust unit price for temporary service
+        }
+        if (document.getElementById('home').checked) {
+            unitPrice *= 5.5; // Adjust unit price for home service
+        }
+
+        // Perform any other necessary calculations
+
+        // Display unit price or perform further calculations
+        console.log("Unit Price: " + unitPrice);
+    }
+    }
+	
+	 
+</script>
+</body>
+</html>
